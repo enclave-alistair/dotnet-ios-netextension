@@ -1,0 +1,77 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <!-- iOS 15 required because of the new memory limit -->
+        <TargetFrameworks>net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>true</ImplicitUsings>
+        <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+        <IsAppExtension>true</IsAppExtension>
+        <ResolveAssemblyConflicts>true</ResolveAssemblyConflicts>
+        <!-- <MtouchExtraArgs>TODO</MtouchExtraArgs> -->
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">15.0</SupportedOSPlatformVersion>
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
+        <Configurations>Debug;Release</Configurations>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <UseMauiEssentials>true</UseMauiEssentials>
+    </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <MtouchExtraArgs>--nolinkaway</MtouchExtraArgs>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <MtouchExtraArgs>--nolinkaway --setenv:MONO_GC_PARAMS=nursery-size=256k,soft-heap-limit=256k</MtouchExtraArgs>
+    <TrimmerRemoveSymbols>true</TrimmerRemoveSymbols>
+    <DebuggerSupport>false</DebuggerSupport>
+    <MetadataUpdaterSupport>false</MetadataUpdaterSupport>
+    <UseSystemResourceKeys>true</UseSystemResourceKeys>
+    <EnableUnsafeBinaryFormatterSerialization>false</EnableUnsafeBinaryFormatterSerialization>
+    <EnableUnsafeUTF7Encoding>false</EnableUnsafeUTF7Encoding>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <EventSourceSupport>false</EventSourceSupport>
+    <HttpActivityPropagationSupport>false</HttpActivityPropagationSupport>
+    <AutoreleasePoolSupport>true</AutoreleasePoolSupport>
+    <UseNativeHttpHandler>true</UseNativeHttpHandler>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <MtouchLink>Full</MtouchLink>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)'=='net7.0-ios'">
+      <RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignProvision>Automatic</CodesignProvision>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>1701;1702;IL2026;IL2041;IL2042;IL2043;IL2056;IL2045;IL2046;IL2050;IL2032;IL2055;IL2057;IL2058;IL2059;IL2060;IL2061;IL2096;IL2062;IL2063;IL2064;IL2065;IL2066;IL2067;IL2068;IL2069;IL2070;IL2071;IL2072;IL2073;IL2074;IL2075;IL2076;IL2077;IL2078;IL2079;IL2080;IL2081;IL2082;IL2083;IL2084;IL2085;IL2086;IL2087;IL2088;IL2089;IL2090;IL2091;IL2092;IL2093;IL2094;IL2095;IL2097;IL2098;IL2099;IL2106;IL2103;IL2107;IL2109;IL2110;IL2111;IL2114;IL2115;IL2112;IL2113;SA1005</NoWarn>
+    <PlatformTarget>anycpu</PlatformTarget>
+    <CreatePackage>false</CreatePackage>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <MtouchLink>Full</MtouchLink>
+    <CreatePackage>false</CreatePackage>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Vpn\" />
+    <None Remove="Api\" />
+    <None Remove="Services\" />
+    <None Remove="Microsoft.Diagnostics.Tracing.TraceEvent" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Enclave.FastPacket" />
+    <PackageReference Include="Microsoft.Extensions.ObjectPool" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Dotnet.Test.Utilities\Dotnet.Test.Utilities.csproj" />
+  </ItemGroup>
+</Project>

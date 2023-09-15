@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Color x:Key="BackgroundGrey">#F9F9FB</Color>
+    <Color x:Key="HeaderBackground">#2D3040</Color>
+    <Color x:Key="FabricPeerBackground">#f0f0f0</Color>
+
+    <Color x:Key="Primary">#2D3040</Color>
+    <Color x:Key="Secondary">#DCDDE4</Color>
+    <Color x:Key="Tertiary">#90FFFFFF</Color>
+    <Color x:Key="White">White</Color>
+    <Color x:Key="Black">Black</Color>
+    <Color x:Key="Gray100">#E1E1E1</Color>
+    <Color x:Key="Gray200">#C8C8C8</Color>
+    <Color x:Key="Gray300">#ACACAC</Color>
+    <Color x:Key="Gray400">#919191</Color>
+    <Color x:Key="Gray500">#6E6E6E</Color>
+    <Color x:Key="Gray600">#404040</Color>
+    <Color x:Key="Gray900">#212121</Color>
+    <Color x:Key="Gray950">#141414</Color>
+    <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}"/>
+    <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}"/>
+    <SolidColorBrush x:Key="TertiaryBrush" Color="{StaticResource Tertiary}"/>
+    <SolidColorBrush x:Key="WhiteBrush" Color="{StaticResource White}"/>
+    <SolidColorBrush x:Key="BlackBrush" Color="{StaticResource Black}"/>
+    <SolidColorBrush x:Key="Gray100Brush" Color="{StaticResource Gray100}"/>
+    <SolidColorBrush x:Key="Gray200Brush" Color="{StaticResource Gray200}"/>
+    <SolidColorBrush x:Key="Gray300Brush" Color="{StaticResource Gray300}"/>
+    <SolidColorBrush x:Key="Gray400Brush" Color="{StaticResource Gray400}"/>
+    <SolidColorBrush x:Key="Gray500Brush" Color="{StaticResource Gray500}"/>
+    <SolidColorBrush x:Key="Gray600Brush" Color="{StaticResource Gray600}"/>
+    <SolidColorBrush x:Key="Gray900Brush" Color="{StaticResource Gray900}"/>
+    <SolidColorBrush x:Key="Gray950Brush" Color="{StaticResource Gray950}"/>
+
+    <Color x:Key="Yellow100Accent">#F7B548</Color>
+    <Color x:Key="Yellow200Accent">#FFD590</Color>
+    <Color x:Key="Yellow300Accent">#FFE5B9</Color>
+    <Color x:Key="Cyan100Accent">#28C2D1</Color>
+    <Color x:Key="Cyan200Accent">#7BDDEF</Color>
+    <Color x:Key="Cyan300Accent">#C3F2F4</Color>
+    <Color x:Key="Blue100Accent">#3E8EED</Color>
+    <Color x:Key="Blue200Accent">#72ACF1</Color>
+    <Color x:Key="Blue300Accent">#A7CBF6</Color>
+
+    <!-- Enclave Colors -->
+    <Color x:Key="Blue">#4D89C1</Color>
+    <Color x:Key="DarkBlue">#1B1F30</Color>
+    <Color x:Key="Green">#73C14D</Color>
+    <Color x:Key="Grey">#CCCCCC</Color>
+    <Color x:Key="LightBlue">#3B3E4E</Color>
+    <Color x:Key="Red">#C14D4D</Color>
+    <Color x:Key="VeryDarkGrey">#333333</Color>
+    <Color x:Key="Yellow">#C1BA4D</Color>
+    <Color x:Key="Transparent">#00000000</Color>
+    <Color x:Key="BackgroundBlue">#3998D6</Color>
+    <Color x:Key="VeryLightGrey">#F0F0F0</Color>
+    <Color x:Key="ScrollBarGrey">#F0F0F0</Color>
+    <Color x:Key="FadedGrey">#E7E7E7</Color>
+    <Color x:Key="MediumGrey">#999999</Color>
+    <Color x:Key="DarkGrey">#444444</Color>
+    <Color x:Key="DeepPink">#FFFF1493</Color>
+    <Color x:Key="OrangeRed">#FFFF4500</Color>
+    <Color x:Key="EnclaveGreen">#FF5D9541</Color>
+    <Color x:Key="WestgateLightBlue">#FF3DAEDF</Color>
+
+    <SolidColorBrush x:Key="SideBarHoverBrush" Color="{StaticResource WestgateLightBlue}"/>
+    <SolidColorBrush x:Key="HoverBackground" Color="{StaticResource VeryLightGrey}"/>
+
+    <SolidColorBrush x:Key="HasFocusBackground" Color="{StaticResource FadedGrey}"/>
+    <Color x:Key="HasFocusFadedText">#999999</Color>
+    <Color x:Key="HasFocusText">#444444</Color>
+    <SolidColorBrush x:Key="LostFocusBackground" Color="{StaticResource Transparent}"/>
+    <Color x:Key="LostFocusFadedText">#999999</Color>
+    <Color x:Key="LostFocusText">#444444</Color>
+
+</ResourceDictionary>

@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Dotnet.Test.Tray.ViewModels"
+             xmlns:controls="clr-namespace:Dotnet.Test.Tray.Controls"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+             x:DataType="local:FabricViewModel"
+             BackgroundColor="{DynamicResource BackgroundGrey}"
+             x:Class="Dotnet.Test.Tray.Pages.FabricPage"
+             Title="Fabric Page"
+             Shell.TitleColor="{DynamicResource HeaderBackground}">
+    
+    <!--Status bar behaviour-->
+    <ContentPage.Behaviors>
+        <!--Resources don't seem to work here - color must explicitly specified-->
+        <toolkit:StatusBarBehavior StatusBarColor="#2D3040" StatusBarStyle="LightContent"/>
+    </ContentPage.Behaviors>
+    
+    <Grid x:Name="AdornerGrid" BackgroundColor="{DynamicResource BackgroundGrey}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!--Custom navigation bar-->
+        <controls:HomeHeaderView x:Name="NavigationBar" Grid.Row="0" StopClicked="StopNetworkButton_Clicked" Running="{Binding NavigationBarRunning}"/>
+
+        <!--This scroll view is only necessary because list view headers are broken on iOS. List views are only necessary because collection
+            view scrolling is broken on iOS. -->
+        <VerticalStackLayout x:Name="EnclaveRunningGrid" Grid.Row="1" IsVisible="{Binding FabricRunning}">
+            <Label>
+                Running; all packets to 100.64.0.0/10 will be logged.
+            </Label>            
+        </VerticalStackLayout>
+
+        <!-- Starting | Stopped | Restarting | Failed -->
+        <VerticalStackLayout Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" x:Name="EnclaveStoppedGrid" BackgroundColor="{DynamicResource BackgroundGrey}" Margin="0,0,0,0" IsVisible="{Binding FabricStopped}">
+            
+            <!-- Button: start -->
+            <Button x:Name="StartNetworkButton" 
+                HorizontalOptions="Center"
+                Margin="0,15,0,0" 
+                HeightRequest="36" 
+                WidthRequest="160"
+                Style="{DynamicResource PrimaryButtonStyle}"
+                Clicked="StartNetworkButton_Clicked"
+                Text="START"
+                />
+
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

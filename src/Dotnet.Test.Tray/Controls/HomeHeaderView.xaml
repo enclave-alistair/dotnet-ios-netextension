@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             x:Name="this"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Dotnet.Test.Tray.Controls.HomeHeaderView">
+
+    <AbsoluteLayout x:Name="MenuBarGrid" Background="{DynamicResource HeaderBackground}" BindingContext="{x:Reference this}">
+        <Label Text="Dotnet Test Extension" AbsoluteLayout.LayoutBounds="0.5, 0.5, 100, 100" AbsoluteLayout.LayoutFlags="PositionProportional" />
+        <Button x:Name="StopButton" VerticalOptions="Center" ImageSource ="close_circle.png" Text="Stop" FontSize="11.5" TextColor="White" Clicked="OnStopButtonClicked" BackgroundColor="{DynamicResource HeaderBackground}" BorderColor="{DynamicResource HeaderBackground}" AbsoluteLayout.LayoutBounds="1.0, 0.5" AbsoluteLayout.LayoutFlags="PositionProportional" IsVisible="{Binding Running}" IsEnabled="{Binding Running}"/>
+    </AbsoluteLayout>
+</ContentView>
+

@@ -1,0 +1,129 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
+		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
+		<!-- <TargetFrameworks>$(TargetFrameworks);net6.0-tizen</TargetFrameworks> -->
+		<OutputType>Exe</OutputType>
+		<UseMaui>true</UseMaui>
+        <SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<!-- Display name -->
+		<ApplicationTitle>Dotnet Network Extension</ApplicationTitle>
+
+		<!-- App Identifier -->
+		<ApplicationId>com.dotnet.test</ApplicationId>
+		<ApplicationIdGuid>393B7E74-2EFB-4F72-A0F1-12032DCF6A6F</ApplicationIdGuid>
+
+		<ApplicationDisplayVersion>1.0.0</ApplicationDisplayVersion>
+		<ApplicationVersion>1</ApplicationVersion>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">15.0</SupportedOSPlatformVersion>
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
+		<Configurations>Debug;Release</Configurations>
+        <Nullable>enable</Nullable>
+	</PropertyGroup>
+
+    <PropertyGroup Condition="'$(TargetFramework)'=='net7.0-ios'">
+        <ProvisioningType>automatic</ProvisioningType>
+        <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+        <RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
+        <MtouchLink>Full</MtouchLink>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(TargetFramework)'=='net7.0-maccatalyst'">
+        <ProvisioningType>automatic</ProvisioningType>
+        <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+        <MtouchLink>Full</MtouchLink>
+    </PropertyGroup>
+
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+	  <WarningLevel>4</WarningLevel>
+	  <NoWarn>1701;1702;IL2026;IL2041;IL2042;IL2043;IL2056;IL2045;IL2046;IL2050;IL2032;IL2055;IL2057;IL2058;IL2059;IL2060;IL2061;IL2096;IL2062;IL2063;IL2064;IL2065;IL2066;IL2067;IL2068;IL2069;IL2070;IL2071;IL2072;IL2073;IL2074;IL2075;IL2076;IL2077;IL2078;IL2079;IL2080;IL2081;IL2082;IL2083;IL2084;IL2085;IL2086;IL2087;IL2088;IL2089;IL2090;IL2091;IL2092;IL2093;IL2094;IL2095;IL2097;IL2098;IL2099;IL2106;IL2103;IL2107;IL2109;IL2110;IL2111;IL2114;IL2115;IL2112;IL2113;CS1573;CS1591;SA1005</NoWarn>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- App Icon -->
+        <MauiIcon Include="Resources\AppIcon\appicon.svg" Color="#512BD4" />
+		<MauiIcon Include="Resources\AppIcon\icon.svg" Color="#512BD4" />
+
+		<!-- Splash Screen -->
+		<MauiSplashScreen Include="Resources\Splash\enclave_splash.svg" Color="#2D3040" BaseSize="254,56" />
+
+		<!-- Images -->
+		<MauiImage Include="Resources\Images\*" />
+		<MauiFont Include="Resources\Fonts\*" />
+
+		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<ItemGroup>
+        <ProjectReference Include="..\Dotnet.Test.NetExtension\Dotnet.Test.NetExtension.csproj">
+            <IsAppExtension>true</IsAppExtension>
+        </ProjectReference>
+	</ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Maui" />
+    <PackageReference Include="Microsoft.Toolkit.Mvvm" />
+    <PackageReference Include="Microsoft.Maui.Dependencies" />
+    <PackageReference Include="Microsoft.Maui.Extensions" />
+    <PackageReference Include="Plugin.LocalNotification" />
+  </ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Resources\AppIcon\appicon.svg" />
+	  <None Remove="Resources\Images\dashboard.svg" />
+	  <None Remove="Resources\Images\enrol.svg" />
+	  <None Remove="Resources\Images\gateway.svg" />
+	  <None Remove="Resources\Images\hamburger.svg" />
+	  <None Remove="Resources\Images\notification_icon2.svg" />
+	  <None Remove="Resources\Images\pause_circle.svg" />
+	  <None Remove="Resources\Images\close_circle.svg" />
+	  <None Remove="Resources\Images\play_circle.svg" />
+	  <None Remove="Resources\Images\settings.svg" />
+	  <None Remove="Services\" />
+	  <None Remove="ViewModels\" />
+	  <None Remove="Controls\" />
+	  <None Remove="Microsoft.Extensions.DependencyInjection" />
+	  <None Remove="CommunityToolkit.Maui" />
+	  <None Remove="Microsoft.Toolkit.Mvvm" />
+	  <None Remove="stylecop.json" />
+	  <None Remove="Controls\ViewCells\" />
+	  <None Remove="Microsoft.Maui.Dependencies" />
+	  <None Remove="Microsoft.Maui.Extensions" />
+	  <None Remove="Sentry.Maui" />
+	  <None Remove="Pages\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Pages\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <MauiXaml Update="Controls\DefaultHeaderView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+	<ItemGroup>
+	  <MauiXaml Update="Controls\HomeHeaderView.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\FabricPage.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	</ItemGroup>
+	<ItemGroup>
+        <ProjectReference Include="..\Dotnet.Test.Utilities\Dotnet.Test.Utilities.csproj">
+            <ExcludeAssets>native</ExcludeAssets>
+        </ProjectReference>
+	</ItemGroup>
+	<ItemGroup>
+	  <Compile Update="Controls\HomeHeaderView.xaml.cs">
+	    <DependentUpon>EnclaveHomeHeaderView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Platforms\MacCatalyst\MacCatalystFabricStatusProvider.cs">
+	    <ExcludeFromCurrentConfiguration>false</ExcludeFromCurrentConfiguration>
+	  </Compile>
+	</ItemGroup>
+</Project>
