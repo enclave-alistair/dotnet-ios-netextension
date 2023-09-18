@@ -1,8 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
-		<UseMaui>true</UseMaui>
+		<TargetFrameworks>net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
         <SingleProject>true</SingleProject>
 		<ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks>net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
 		<!-- <TargetFrameworks>$(TargetFrameworks);net6.0-tizen</TargetFrameworks> -->
 		<OutputType>Exe</OutputType>
@@ -24,14 +24,14 @@
         <Nullable>enable</Nullable>
 	</PropertyGroup>
 
-    <PropertyGroup Condition="'$(TargetFramework)'=='net7.0-ios'">
+    <PropertyGroup Condition="'$(TargetFramework)'=='net8.0-ios'">
         <ProvisioningType>automatic</ProvisioningType>
         <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
         <RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
         <MtouchLink>Full</MtouchLink>
     </PropertyGroup>
 
-    <PropertyGroup Condition="'$(TargetFramework)'=='net7.0-maccatalyst'">
+    <PropertyGroup Condition="'$(TargetFramework)'=='net8.0-maccatalyst'">
         <ProvisioningType>automatic</ProvisioningType>
         <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
         <MtouchLink>Full</MtouchLink>
@@ -68,9 +68,13 @@
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Maui" />
     <PackageReference Include="Microsoft.Toolkit.Mvvm" />
-    <PackageReference Include="Microsoft.Maui.Dependencies" />
-    <PackageReference Include="Microsoft.Maui.Extensions" />
+      <PackageReference Include="Microsoft.Maui.Controls.Compatibility" />
     <PackageReference Include="Plugin.LocalNotification" />
+      <PackageReference Include="Microsoft.Maui.Core" />
+      <PackageReference Include="Microsoft.Maui.Controls" />
+      <PackageReference Include="Microsoft.Maui.Essentials" />
+      <PackageReference Include="Microsoft.Maui.Resizetizer" />
+      <PackageReference Include="Microsoft.Extensions.Logging.Debug" />
   </ItemGroup>
 
 	<ItemGroup>

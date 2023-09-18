@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <!-- iOS 15 required because of the new memory limit -->
-        <TargetFrameworks>net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
+        <TargetFrameworks>net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
         <Nullable>enable</Nullable>
         <ImplicitUsings>true</ImplicitUsings>
         <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
@@ -12,7 +12,7 @@
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
         <Configurations>Debug;Release</Configurations>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-        <UseMauiEssentials>true</UseMauiEssentials>
+        <SelfContained>true</SelfContained>
     </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
@@ -38,7 +38,7 @@
     <MtouchLink>Full</MtouchLink>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(TargetFramework)'=='net7.0-ios'">
+  <PropertyGroup Condition="'$(TargetFramework)'=='net8.0-ios'">
       <RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
   </PropertyGroup>
 
@@ -69,9 +69,16 @@
   <ItemGroup>
     <PackageReference Include="Enclave.FastPacket" />
     <PackageReference Include="Microsoft.Extensions.ObjectPool" />
+    <PackageReference Include="Microsoft.Maui.Essentials" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Dotnet.Test.Utilities\Dotnet.Test.Utilities.csproj" />
   </ItemGroup>
+    
+<Target Name="_FixRootAssembly" AfterTargets="PrepareForILLink">
+    <ItemGroup>
+        <TrimmerRootAssembly Update="@(TrimmerRootAssembly)" Condition=" '%(TrimmerRootAssembly.RootMode)' == 'EntryPoint' " RootMode="Library" />
+    </ItemGroup>
+</Target>
 </Project>
