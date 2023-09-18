@@ -60,9 +60,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Vpn\" />
-    <None Remove="Api\" />
-    <None Remove="Services\" />
     <None Remove="Microsoft.Diagnostics.Tracing.TraceEvent" />
   </ItemGroup>
 
@@ -76,6 +73,7 @@
     <ProjectReference Include="..\Dotnet.Test.Utilities\Dotnet.Test.Utilities.csproj" />
   </ItemGroup>
     
+  <!-- This is a workaround for https://github.com/dotnet/linker/issues/3165 -->
 <Target Name="_FixRootAssembly" AfterTargets="PrepareForILLink">
     <ItemGroup>
         <TrimmerRootAssembly Update="@(TrimmerRootAssembly)" Condition=" '%(TrimmerRootAssembly.RootMode)' == 'EntryPoint' " RootMode="Library" />
