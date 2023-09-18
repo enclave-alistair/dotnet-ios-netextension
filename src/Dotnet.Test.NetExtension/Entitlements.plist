@@ -6,14 +6,9 @@
 	<array>
 		<string>packet-tunnel-provider</string>
 	</array>
-	<key>com.apple.security.application-groups</key>
-	<array>
-		<string>group.com.dotnet.extensiontest</string>
-	</array>
 	<key>keychain-access-groups</key>
 	<array>
 		<string>$(AppIdentifierPrefix)$(CFBundleIdentifier)</string>
-		<string>$(AppIdentifierPrefix)group.com.dotnet.extensiontest</string>
 	</array>
 </dict>
 </plist>
